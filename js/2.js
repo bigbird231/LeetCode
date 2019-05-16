@@ -18,6 +18,7 @@
      * @return {ListNode}
      */
     //runtime:208ms,memory:37.9MB
+    //思路：按位字符串相加，大于10则进一，需要处理好头尾的各个条件判断
     var addTwoNumbers = function(l1, l2) {
         let firstNode,currNode,lastNode,counter,l3,digit;
         //初始化
@@ -108,6 +109,8 @@
 
 
     //runtime:204ms,memory:39MB
+    //思路：第一次看题的时候，没注意输入是ListNode，
+    //所以写了一个数组解题的方法，本质上还是按位字符串相加，大于10则进一。
     var addTwoNumbers1 = function(l1, l2) {
         //
         function listNodeToArray(node){
