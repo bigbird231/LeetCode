@@ -19,7 +19,8 @@
         }
     };
 
-    //进阶
+    //进阶，不转化为字符串。通过取模算法将整数倒序化。
+    //420ms,48.2MB
     var isPalindromeAdvanced = function(x) {
         let backFowardX=0;
         let pow=0,i,tempX;
@@ -41,7 +42,6 @@
             pow/=10;
             tempX-=tempX%jPow;
         }
-        console.log(backFowardX);
         if(backFowardX==x){
             return true;
         }else{
