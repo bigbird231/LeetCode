@@ -5,7 +5,8 @@
      * @param {string} p
      * @return {boolean}
      */
-    //不能倒序遍历，根据贪婪搜索的原则，.*会判断错误
+    //3496ms,37.8MB
+    //暴力遍历求解，在每次遇到*的时候，都进行递归，分解出*符号每一种可能的情况，匹配到一种则返回true
     var isMatch = function(s, p) {
         const COUNT_MATCH="*";
         const CHAR_MATCH=".";
@@ -17,15 +18,6 @@
          */
         function match(i,m){
             let isMatch=true;
-            /*for(let j=0;j<m.length;j++){
-                if(s[i]===m[j] || m[j]===CHAR_MATCH){
-                    i++;
-                    continue;
-                }else{
-                    isMatch=false;
-                    break;
-                }
-            }*/
             if(s[i]===m || m===CHAR_MATCH){
                 i++;
             }else{
@@ -72,7 +64,7 @@
                         break;
                 }
             }
-            if(pi===p.length && si===s.length){
+            if(pi===p.length && si===s.length && isMatch){
                 return true;
             }else{
                 return false;
@@ -82,23 +74,6 @@
         return result;
     };
 
-
-    var isMatch1 = function(s, p) {
-        var memo = new Map();
-        var dp = function(i, j) {
-            if(memo.has(i+""+j)) return memo.get(i+""+j);
-            if(j === p.length) return i === s.length;
-            var first = i < s.length && (p.charAt(j) === s.charAt(i) || p.charAt(j) === '.');
-            if(j<=p.length-2 && p.charAt(j+1)==='*') {
-                var ans = dp(i, j+2) || (first && dp(i+1,j));
-            }
-            else ans = first && dp(i+1, j+1);
-            memo.set(i+""+j, ans);
-
-            return ans;
-        }
-        return dp(0, 0);
-    };
 
     //172ms,34.4MB
     var isMatch2 = function(s, p) {
@@ -115,4 +90,5 @@
     //console.log(isMatch("aaa","a*aa"));
     //console.log(isMatch("aaa","a*aaa"));
     //console.log(isMatch("aaa","ab*a*c*a"));
+    console.log(isMatch("ab",".*c"));
 })();
