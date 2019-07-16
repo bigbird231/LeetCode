@@ -74,8 +74,26 @@
         return result;
     };
 
+    //评论里的一个答案，112ms,36.7MB
+    var isMatch1 = function(s, p) {
+        var memo = new Map();
+        var dp = function(i, j) {
+            if(memo.has(i+""+j)) return memo.get(i+""+j);
+            if(j === p.length) return i === s.length;
+            var first = i < s.length && (p.charAt(j) === s.charAt(i) || p.charAt(j) === '.');
+            if(j<=p.length-2 && p.charAt(j+1)==='*') {
+                var ans = dp(i, j+2) || (first && dp(i+1,j));
+            }
+            else ans = first && dp(i+1, j+1);
+            memo.set(i+""+j, ans);
+
+            return ans;
+        };
+        return dp(0, 0);
+    };
 
     //172ms,34.4MB
+    //摸鱼实现方法
     var isMatch2 = function(s, p) {
         let pattern=new RegExp("^"+p+"$");
         return pattern.test(s);
