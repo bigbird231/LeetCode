@@ -108,5 +108,5 @@
     //console.log(isMatch("aaa","a*aa"));
     //console.log(isMatch("aaa","a*aaa"));
     //console.log(isMatch("aaa","ab*a*c*a"));
-    console.log(isMatch("ab",".*c"));
+    //console.log(isMatch("ab",".*c"));
 })();
